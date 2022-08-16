@@ -16,6 +16,6 @@ use App\Http\Controllers\ParticipantesController;
 
 Route::get('/', function () {
     return view('landingPage.index');
-});
+})->name('inicio');
 
 Route::resource('participantes', ParticipantesController::class)->except('show');

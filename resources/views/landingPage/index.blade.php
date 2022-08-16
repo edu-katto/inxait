@@ -36,17 +36,15 @@
     <div class="container d-flex align-items-center justify-content-between">
 
         <div class="logo">
-            <h1><a href="index.html"><span>SUBARU</span></a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            <h1><a href="{{ route('inicio') }}"><span>SUBARU</span></a></h1>
         </div>
 
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
-                <li><a class="nav-link scrollto" href="#about">Acerca De</a></li>
-                <li><a class="nav-link scrollto" href="#features">Caracteristicas</a></li>
-                <li><a class="nav-link scrollto" href="#details"><span class="badge bg-warning text-dark">Concurso</span></a></li>
+                <li><a class="nav-link scrollto" href="#acerca">Acerca De</a></li>
+                <li><a class="nav-link scrollto" href="#caracteristicas">Caracteristicas</a></li>
+                <li><a class="nav-link scrollto" href="#concurso"><span class="badge bg-warning text-dark">Concurso</span></a></li>
                 <li><a class="nav-link scrollto" href="#faq">Preguntas frecuentes</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
@@ -65,7 +63,7 @@
                     <h1>Llegó a colombia el nuevo <span>Subaru XV</span></h1>
                     <h2>Con nuevas mejorar y listo para que sea tuyo</h2>
                     <div class="text-center text-lg-start">
-                        <a href="#about" class="btn-get-started scrollto">Acompañame en el recorrido</a>
+                        <a href="#acerca" class="btn-get-started scrollto">Acompañame en el recorrido</a>
                     </div>
                 </div>
             </div>
@@ -95,7 +93,7 @@
 <main id="main">
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <section id="acerca" class="about">
         <div class="container-fluid">
 
             <div class="row">
@@ -132,7 +130,7 @@
     </section><!-- End About Section -->
 
     <!-- ======= Features Section ======= -->
-    <section id="features" class="features">
+    <section id="caracteristicas" class="features">
         <div class="container">
 
             <div class="section-title" data-aos="fade-up">
@@ -205,7 +203,7 @@
     </section><!-- End Counts Section -->
 
     <!-- ======= Details Section ======= -->
-    <section id="details" class="details">
+    <section id="concurso" class="details">
         <div class="container">
 
             <div class="row content">
@@ -218,21 +216,82 @@
                         Los pasos son super sencillos, solo llena el siguiente formulario y a tu correo llegara la confirmacion de tu participacion.
                     </p>
                     <div class="col-lg-12 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="200">
-
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Alerta!</strong> {{ $message }}.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Alerta!</strong> Antes de guardar validar los errores.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
+                        <form action="{{ route('participantes.store') }}" method="post" role="form" class="php-email-form">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+                                    <small class="help-block form-text text-danger">@error('nombre') {{ $message }} @enderror</small>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                                    <input type="text" class="form-control" name="apellido" placeholder="Apellido" required>
+                                    <small class="help-block form-text text-danger">@error('apellido') {{ $message }} @enderror</small>
                                 </div>
                             </div>
-                            <div class="form-group mt-3">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <div class="form-group mt-3">
+                                        <input type="number" class="form-control" name="telefono" placeholder="Celular" required>
+                                        <small class="help-block form-text text-danger">@error('telefono') {{ $message }} @enderror</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <div class="form-group mt-3">
+                                        <input type="number" class="form-control" name="cedula" placeholder="Cedula" required>
+                                        <small class="help-block form-text text-danger">@error('cedula') {{ $message }} @enderror</small>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                            <div class="row">
+                                <div class="col-md-12 form-group mt-3">
+                                    <select class="form-select" name="cod_departamento">
+                                        <option selected>Departamento</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 form-group mt-3">
+                                    <select class="form-select" name="cod_ciudad">
+                                        <option selected>Munucipio</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <div class="form-group mt-3">
+                                        <input type="email" class="form-control" name="correo" placeholder="Correo" required>
+                                        <small class="help-block form-text text-danger">@error('correo') {{ $message }} @enderror</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <div class="form-group mt-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="terminos_condiciones" type="checkbox" name="terminos_condiciones">
+                                            <label class="form-check-label" for="terminos_condiciones">
+                                                Autorizo el tratamiento de mis datos de acuerdo con la finalidad establecida en la política de protección de datos personales. Haga clic aquí
+                                            </label>
+                                            <small class="help-block form-text text-danger">@error('terminos_condiciones') {{ $message }} @enderror</small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="text-center my-3"><button class="btn btn-dark" type="submit">Participa</button></div>
                         </form>
@@ -327,9 +386,9 @@
                     <h4>Link</h4>
                     <ul>
                         <li><i class="bx bx-chevron-right"></i> <a href="#hero">Inicio</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#features">Acerca De</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#details">Característica</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#details"><span class="badge bg-warning text-dark">Concurso</span></a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#caracteristicas">Acerca De</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#concurso">Característica</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#concurso"><span class="badge bg-warning text-dark">Concurso</span></a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="#faq">Preguntas frecuentes</a></li>
                     </ul>
                 </div>
@@ -360,7 +419,7 @@
 <!-- Vendor JS Files -->
 <script src="{{ asset('landingPage/vendor/purecounter/purecounter_vanilla.js') }}"></script>
 <script src="{{ asset('landingPage/vendor/aos/aos.js') }}"></script>
-<script src="{{ asset('landingPage/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('landingPage/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
 <script src="{{ asset('landingPage/vendor/glightbox/js/glightbox.min.js') }}"></script>
 <script src="{{ asset('landingPage/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
