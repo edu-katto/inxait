@@ -31,13 +31,13 @@ class ParticipantesController extends Controller
             'cod_departamento' => $request->cod_departamento,
             'cod_ciudad' => $request->cod_ciudad,
             'correo' => $request->correo,
-            'terminos_condiciones' => $request->terminos_condiciones,
+            'terminos_condiciones' => $request->terminos_condiciones == 'on' ? '1' : '0',
             'validacion' => 0,
             'token_validacion' => Str::uuid()
         ]);
 
         return redirect()
-            ->route('participantes.create')
+            ->route('inicio')
             ->with('success','Felicitaciones ya solo falta que leas el mensaje que te acabamos de mandar al correo!');
     }
 }

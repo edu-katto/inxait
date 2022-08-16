@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id('cod_participantes');
             $table->string('nombre', 50);
             $table->string('apellido', 50);
-            $table->integer('cedula')->unique();
-            $table->integer('telefono')->unique();
+            $table->bigInteger('cedula')->unique();
+            $table->bigInteger('telefono')->unique();
             $table->bigInteger('cod_departamento')->unsigned();
             $table->bigInteger('cod_ciudad')->unsigned();
             $table->string('correo', 80)->unique();
