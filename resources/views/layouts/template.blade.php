@@ -20,10 +20,8 @@
     <link id="pagestyle" href="{{ asset('dashboard/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
-<div class="min-height-300 bg-primary position-absolute w-100"></div>
-
-@include('layouts.sideBar')
+<body class="g-sidenav-show  bg-gray-100">
+@yield('sideBar')
 
 @yield('content')
 <!--   Core JS Files   -->

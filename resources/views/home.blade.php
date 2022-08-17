@@ -1,5 +1,8 @@
 @extends('layouts.template')
+
 @section('title') Listado De Participantes @endsection
+@section('sideBar') @include('layouts.sideBar') @endsection
+
 @section('content')
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->

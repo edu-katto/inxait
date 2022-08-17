@@ -290,6 +290,7 @@
                         <li><i class="bx bx-chevron-right"></i> <a href="#concurso">Característica</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="#concurso"><span class="badge bg-warning text-dark">Concurso</span></a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="#faq">Preguntas frecuentes</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('login') }}">Login</a></li>
                     </ul>
                 </div>
 
