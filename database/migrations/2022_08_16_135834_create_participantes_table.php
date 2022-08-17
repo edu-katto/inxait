@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('correo', 80)->unique();
             $table->boolean('terminos_condiciones');
             $table->boolean('validacion');
-            $table->uuid('token_validacion')->unique();
+            $table->uuid('token_validacion')->nullable();
             $table->timestamps();
 
             //relaciones
