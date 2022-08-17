@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Participantes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -21,8 +23,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Participantes $participantes)
     {
-        return view('home');
+        return view('home', [
+            'participantes' => DB::table($participantes->getView())->select()->paginate(5)
+        ]);
     }
 }
