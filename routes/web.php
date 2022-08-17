@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParticipantesController;
-
+use App\Http\Livewire\Participantes\Index;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +14,4 @@ use App\Http\Controllers\ParticipantesController;
 |
 */
 
-Route::get('/', function () {
-    return view('landingPage.index');
-})->name('inicio');
-
-Route::resource('participantes', ParticipantesController::class)->except('show');
+Route::get('/', Index::class)->name('inicio');
