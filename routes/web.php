@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReportController;
 use App\Http\Livewire\Participantes\Index;
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\EmailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +23,5 @@ Route::get('/', Index::class)->name('inicio');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/exportExcel', [ReportController::class, 'exportExcel'])->name('exportExcel');
+
+Route::get('/emailConfirm/{token}', [EmailController::class, 'emailConfirm']);

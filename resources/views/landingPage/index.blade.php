@@ -14,8 +14,7 @@
                     <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
                     <li><a class="nav-link scrollto" href="#acerca">Acerca De</a></li>
                     <li><a class="nav-link scrollto" href="#caracteristicas">Caracteristicas</a></li>
-                    <li><a class="nav-link scrollto" href="#concurso"><span
-                                    class="badge bg-warning text-dark">Concurso</span></a></li>
+                    <li><a class="nav-link scrollto" href="#concurso"><span class="badge bg-warning text-dark">Concurso</span></a></li>
                     <li><a class="nav-link scrollto" href="#faq">Preguntas frecuentes</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>

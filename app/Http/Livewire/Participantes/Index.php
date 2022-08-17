@@ -10,6 +10,9 @@ use App\Models\Participantes;
 use App\Models\Departamento;
 use App\Models\Ciudad;
 
+use App\Mail\ConfirmEmail;
+use Illuminate\Support\Facades\Mail;
+
 class Index extends Component
 {
     public $nombre;
@@ -58,6 +61,9 @@ class Index extends Component
                 ->with('info','lo sentimos este concurso solo esta disponible para la ciudad de Bogota');
         }
 
+        //token validacion correo
+        $token = Str::uuid();
+
         Participantes::create([
             'nombre' => $this->nombre,
             'apellido' => $this->apellido,
@@ -68,8 +74,18 @@ class Index extends Component
             'correo' => $this->correo,
             'terminos_condiciones' => $this->terminos_condiciones == 'on' ? '1' : '0',
             'validacion' => 0,
-            'token_validacion' => Str::uuid()
+            'token_validacion' => $token
         ]);
+
+        //envio de correo
+        $mailData = [
+            'token' => $token,
+            'nombre' => $this->nombre,
+            'apellido' => $this->apellido
+        ];
+
+        $correo = new ConfirmEmail($mailData);
+        Mail::to($this->correo)->send($correo);
 
         return redirect()
             ->route('inicio','#concurso')
