@@ -14,6 +14,9 @@ use App\Http\Livewire\Participantes\Index;
 |
 */
 
+Auth::routes();
+
 Route::get('/', Index::class)->name('inicio');
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/exportExcel', [ReportController::class, 'exportExcel'])->name('exportExcel');
