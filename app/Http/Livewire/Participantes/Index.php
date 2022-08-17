@@ -4,20 +4,25 @@ namespace App\Http\Livewire\Participantes;
 
 use Livewire\Component;
 use Illuminate\Http\Request;
-use App\Models\Participantes;
 use Illuminate\Support\Str;
+
+use App\Models\Participantes;
+use App\Models\Departamento;
+use App\Models\Ciudad;
 
 class Index extends Component
 {
-
     public $nombre;
     public $apellido;
     public $cedula;
     public $telefono;
-    public $cod_departamento;
-    public $cod_ciudad;
     public $correo;
     public $terminos_condiciones;
+
+    public $ciudades = NULL;
+    public $departamento = NULL;
+    public $cod_departamento = NULL;
+    public $cod_ciudad = NULL;
 
     protected $rules = [
         'nombre' => 'required|string',
@@ -30,11 +35,17 @@ class Index extends Component
         'terminos_condiciones' => 'required',
     ];
 
-    public function render()
-    {
-        return view('livewire.participantes.index')
-            ->extends('layout.landingPage')
-            ->section('content');
+    public function render(){
+        return view('livewire.participantes.index', [
+            'departamentos' => Departamento::all()
+
+        ])->extends('layout.landingPage')
+          ->section('content');
+
+    }
+
+    public function updatedcodDepartamento($cod_departamento){
+        $this->ciudades = Ciudad::where('cod_departamento', $cod_departamento)->get();
     }
 
     public function save(){

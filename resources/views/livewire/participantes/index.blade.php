@@ -54,20 +54,20 @@
                             <div class="row">
                                 <div class="col-md-12 form-group mt-3">
                                     <select class="form-select" wire:model="cod_departamento">
-                                        <option selected>Departamento</option>
-                                        <option value="5">One</option>
-                                        <option value="6">Two</option>
-                                        <option value="7">Three</option>
+                                        @foreach($departamentos as $departamento)
+                                            <option value="{{ $departamento->cod_departamento }}">{{ $departamento->departamento }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
+                                @if(!is_null($ciudades))
                                 <div class="col-md-12 form-group mt-3">
                                     <select class="form-select" wire:model="cod_ciudad">
-                                        <option selected>Munucipio</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        @foreach($ciudades as $ciudad)
+                                            <option value="{{ $ciudad->cod_ciudad }}">{{ $ciudad->ciudad }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
+                                @endif
                             </div>
                             <div class="row">
                                 <div class="col-md-12 form-group">
