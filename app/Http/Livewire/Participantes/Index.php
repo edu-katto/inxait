@@ -25,9 +25,9 @@ class Index extends Component
     public $cod_ciudad = NULL;
 
     protected $rules = [
-        'nombre' => 'required|string',
-        'apellido' => 'required|string',
-        'cedula' => 'required|numeric|min:7|unique:participantes,cedula',
+        'nombre' => 'required|string|regex:/^[\pL\s\-]+$/u',
+        'apellido' => 'required|string|regex:/^[\pL\s\-]+$/u',
+        'cedula' => 'required|numeric|min:6|unique:participantes,cedula',
         'telefono' => 'required|numeric|min:10|unique:participantes,telefono',
         'cod_departamento' => 'required',
         'cod_ciudad' => 'required',
@@ -52,6 +52,12 @@ class Index extends Component
 
         $this->validate();
 
+        if ($this->cod_ciudad != 107){
+            return redirect()
+                ->route('inicio','#concurso')
+                ->with('info','lo sentimos este concurso solo esta disponible para la ciudad de Bogota');
+        }
+
         Participantes::create([
             'nombre' => $this->nombre,
             'apellido' => $this->apellido,
@@ -66,7 +72,7 @@ class Index extends Component
         ]);
 
         return redirect()
-            ->route('inicio')
+            ->route('inicio','#concurso')
             ->with('success','Ya casi estas listo para participar, solo falta que leas el correo que te mandamos');
     }
 }

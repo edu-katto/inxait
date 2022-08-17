@@ -13,18 +13,7 @@
                         Los pasos son super sencillos, solo llena el siguiente formulario y a tu correo llegara la confirmacion de tu participacion.
                     </p>
                     <div class="col-lg-12 mt-5 mt-lg-0">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>Alerta!</strong> {{ $message }}.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
-                        @if ($errors->any())
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong>Alerta!</strong> Antes de guardar validar los errores.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
+                        @include('layouts.flashMessage')
                         <form wire:submit.prevent="save">
                             @csrf
                             <div class="row">
@@ -54,18 +43,22 @@
                             <div class="row">
                                 <div class="col-md-12 form-group mt-3">
                                     <select class="form-select" wire:model="cod_departamento">
+                                            <option value="">DEPARTAMENTOS</option>
                                         @foreach($departamentos as $departamento)
                                             <option value="{{ $departamento->cod_departamento }}">{{ $departamento->departamento }}</option>
                                         @endforeach
                                     </select>
+                                    <small class="help-block form-text text-danger">@error('cod_departamento') {{ $message }} @enderror</small>
                                 </div>
                                 @if(!is_null($ciudades))
                                 <div class="col-md-12 form-group mt-3">
                                     <select class="form-select" wire:model="cod_ciudad">
+                                        <option value="" selected>CIUDADES</option>
                                         @foreach($ciudades as $ciudad)
                                             <option value="{{ $ciudad->cod_ciudad }}">{{ $ciudad->ciudad }}</option>
                                         @endforeach
                                     </select>
+                                    <small class="help-block form-text text-danger">@error('cod_ciudad') {{ $message }} @enderror</small>
                                 </div>
                                 @endif
                             </div>
