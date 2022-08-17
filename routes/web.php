@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ParticipantesController;
+use App\Http\Controllers\ReportController;
 use App\Http\Livewire\Participantes\Index;
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +15,5 @@ use App\Http\Livewire\Participantes\Index;
 */
 
 Route::get('/', Index::class)->name('inicio');
+
+Route::get('/exportExcel', [ReportController::class, 'exportExcel'])->name('exportExcel');
