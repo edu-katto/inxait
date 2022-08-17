@@ -39,7 +39,7 @@ class Index extends Component
         return view('livewire.participantes.index', [
             'departamentos' => Departamento::all()
 
-        ])->extends('layout.landingPage')
+        ])->extends('layouts.landingPage')
           ->section('content');
 
     }
