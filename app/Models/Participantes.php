@@ -27,7 +27,9 @@ class Participantes extends Model
     public function getKeyName(){
         return "cod_inventario";
     }
-
+    /* se crea con el fin de no escribir la vista si no llamar a este metodo y que el la traiga
+    * asi cuando se use en muchas partes es mas comodo cambiar el nombre de la vista desde aqui
+    */
     public function getView(){
         return 'vista_participantes';
     }

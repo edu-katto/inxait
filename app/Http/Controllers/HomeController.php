@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index(Participantes $participantes)
     {
+        //se modifico para enviar los datos de los usuarios registrado y se agrago paginacion para evitar un colapso con grandes sumas de datos
         return view('home', [
             'participantes' => DB::table($participantes->getView())->select()->paginate(5)
         ]);

@@ -19,10 +19,10 @@ use App\Http\Controllers\EmailController;
 
 Auth::routes(['register' => false]);
 
-Route::get('/', Index::class)->name('inicio');
-Route::get('/emailConfirm/{token}', [EmailController::class, 'emailConfirm']);
+Route::get('/', Index::class)->name('inicio'); // rutas controladas desde livewire
+Route::get('/emailConfirm/{token}', [EmailController::class, 'emailConfirm']); //ruta para confirmar correo
 
 Route::middleware('auth')->group( function(){
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/exportExcel', [ReportController::class, 'exportExcel'])->name('exportExcel');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); //vista del dashboard
+    Route::get('/exportExcel', [ReportController::class, 'exportExcel'])->name('exportExcel'); //ruta para la exportación del informe
 });
