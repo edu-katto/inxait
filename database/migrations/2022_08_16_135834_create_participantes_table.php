@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('terminos_condiciones');
             $table->boolean('validacion');
             $table->uuid('token_validacion')->nullable();
+            $table->boolean('ganador')->nullable();
             $table->timestamps();
 
             //relaciones
