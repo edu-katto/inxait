@@ -34,6 +34,8 @@ Se cargó el proyecto completo y la base de datos para evitar volver hacer las m
 se recomienda usar laravel sail para cargar el proyecto ya que se desarrollo utilizando docker,
 en caso tal los eventos, procedimientos almacenados y vistas den problemas se anexa una carpeta con estos tres componentes.
 nota deje cargado los paquetes de dentro del repositorio para evitar errores.
+
+el usuario y la contraseña estan en el formulario de login y el link al login se encuentra en el footer de la pagina.
 ## Autores ✒️
 
 * **Andrés Sanchez** - *Desarrollador* - [Portafolio](https://edu-katto.github.io/)
