@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Participantes;
 
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -40,7 +41,8 @@ class Index extends Component
 
     public function render(){
         return view('livewire.participantes.index', [
-            'departamentos' => Departamento::all()
+            'departamentos' => Departamento::all(),
+            'ganador' => Participantes::where('ganador', 1)->get()->first()
 
         ])->extends('layouts.landingPage')
           ->section('content');
@@ -57,7 +59,7 @@ class Index extends Component
 
         if ($this->cod_ciudad != 107){
             return redirect()
-                ->route('inicio','#concurso')
+                ->back()
                 ->with('info','lo sentimos este concurso solo esta disponible para la ciudad de Bogota');
         }
 
@@ -88,7 +90,7 @@ class Index extends Component
         Mail::to($this->correo)->send($correo);
 
         return redirect()
-            ->route('inicio','#concurso')
+            ->back()
             ->with('success','Ya casi estas listo para participar, solo falta que leas el correo que te mandamos');
     }
 }
