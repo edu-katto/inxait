@@ -297,12 +297,10 @@
                 <div class="col-lg-4 col-md-6 footer-newsletter">
                     <h4>Nuestro boletín</h4>
                     <p>Suscríbete para estar al dia con nuestros lanzamientos</p>
-                    <form action="" method="post">
+                    <form>
                         <input type="email" name="email"><input type="submit" value="Suscríbete">
                     </form>
-
                 </div>
-
             </div>
         </div>
     </div>

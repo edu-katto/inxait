@@ -36,7 +36,9 @@
                                 @endif
                                 <div class="card-header pb-0 text-start">
                                     <h4 class="font-weight-bolder">Iniciar Sesion</h4>
-                                    <p class="mb-0">Ingresa tu correo y contraseña</p>
+                                    <p class="mb-1">Ingresa tu correo y contraseña</p>
+                                    <p class="mb-1"><strong>correo:</strong> loscaminos@gmail.com</p>
+                                    <p class="mb-1"><strong>password:</strong> A7250015963a</p>
                                 <div class="card-body">
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
