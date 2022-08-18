@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-center my-3"><button class="btn btn-dark" type="submit">Participa</button></div>
+                                <div class="text-center my-3 d-grid gap-2"><button class="btn btn-success" type="submit">Participa</button></div>
                             </form>
 
                         </div>
