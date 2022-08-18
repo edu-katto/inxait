@@ -1,0 +1,11 @@
+DELIMITER //
+CREATE PROCEDURE ganador()
+BEGIN
+    SET @cod_ganador = (SELECT p.cod_participantes FROM participantes p WHERE p.validacion = 1 ORDER BY rand() LIMIT 1);
+    SET @cantidad_validado = (SELECT COUNT(p.cod_participantes) FROM participantes p WHERE p.validacion = 1);
+    SET @ganador = (SELECT COUNT(p.cod_participantes) FROM participantes p WHERE p.ganador = 1);
+    IF (@cantidad_validado >= 5) AND (@ganador < 1) THEN
+       UPDATE participantes SET ganador = 1 WHERE cod_participantes = @cod_ganador;
+    END IF;
+END //
+DELIMITER //

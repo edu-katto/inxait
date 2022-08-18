@@ -1,0 +1,20 @@
+CREATE VIEW vista_participantes AS
+
+SELECT 
+    p.cod_participantes,
+    p.nombre,
+    p.apellido,
+    p.cedula,
+    p.telefono,
+    d.departamento,
+    c.ciudad,
+    p.correo,
+    p.created_at 'fechaCreacion',
+    p.validacion
+FROM 
+    participantes p,
+    departamento d,
+    ciudad c
+WHERE 
+    p.cod_departamento = d.cod_departamento AND 
+    p.cod_ciudad = c.cod_ciudad;
